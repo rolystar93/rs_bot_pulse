@@ -411,3 +411,31 @@ BANDERAS PAR
 
   box-shadow: 0 0 18px rgba(59, 130, 246, 0.12);
 }
+
+/*====================================================
+TRADING-CHART
+======================================================*/
+.chart-card {
+  padding: 24px;
+}
+
+.chart-header {
+  margin-bottom: 24px;
+}
+
+.chart-title {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.chart-subtitle {
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+/*====================================================
+DASHBOARD-PARGE
+======================================================*/
+.dashboard-page {
+  padding: 28px;
+}
