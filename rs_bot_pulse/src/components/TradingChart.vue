@@ -13,7 +13,7 @@
 
     </div>
 
-    <ApexChart height="320" type="area" :options="chartOptions" :series="series" />
+    <ApexChart type="area" height="300" :options="chartOptions" :series="series" />
 
   </q-card>
 </template>

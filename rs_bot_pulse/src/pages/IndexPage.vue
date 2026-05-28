@@ -13,8 +13,20 @@
       <card-portafolio-general title="TOTAL" average="R$ 12 400" gp="+12%" lastmount="vs last month"
         icon="show_chart" />
     </div>
-    <div class="q-mt-lg col-12 col-lg-8">
-      <trading-chart />
+
+    <!-- CHART + TOP PAIRS -->
+    <div class="row q-col-gutter-lg q-mt-md">
+
+      <!-- CHART -->
+      <div class="col col-md-8">
+        <trading-chart />
+      </div>
+
+      <!-- TOP PAIRS -->
+      <div class="col col-md-4">
+        <TopPairsCard />
+      </div>
+
     </div>
 
   </q-page>
@@ -23,5 +35,6 @@
 <script setup lang="ts">
 import CardActivosAveraje from 'src/components/CardActivosAveraje.vue';
 import CardPortafolioGeneral from 'src/components/CardPortafolioGeneral.vue';
+import TopPairsCard from 'src/components/TopPairsCard.vue';
 import TradingChart from 'src/components/TradingChart.vue';
 </script>
