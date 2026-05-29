@@ -28,13 +28,33 @@
       </div>
 
     </div>
+    <!-- WIN/LOSS Y MEJORES HORARIOS -->
+    <div class="row dashboard-grid q-col-gutter-lg q-mt-lg">
+
+      <div class="col col-md-4 chart-wrapper">
+        <WinLossCard />
+      </div>
+
+      <div class="col col-md-4 pairs-wrapper">
+        <BestHoursCard />
+      </div>
+
+      <div class="col col-md-4 pairs-wrapper">
+        <ResumeRentCard />
+      </div>
+
+    </div>
 
   </q-page>
 </template>
 
 <script setup lang="ts">
+
+import BestHoursCard from 'src/components/BestHoursCard.vue';
 import CardActivosAveraje from 'src/components/CardActivosAveraje.vue';
 import CardPortafolioGeneral from 'src/components/CardPortafolioGeneral.vue';
+import ResumeRentCard from 'src/components/ResumeRentCard.vue';
 import TopPairsCard from 'src/components/TopPairsCard.vue';
 import TradingChart from 'src/components/TradingChart.vue';
+import WinLossCard from 'src/components/WinLossCard.vue';
 </script>
