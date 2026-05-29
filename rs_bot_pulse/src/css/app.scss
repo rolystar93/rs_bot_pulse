@@ -132,6 +132,14 @@ body {
   margin-top: 4px;
 }
 
+.menu-active {
+  background: rgba(59, 130, 246, 0.15);
+
+  // border-radius: 12px;
+
+  color: #60a5fa;
+}
+
 /* =========================================================
    SIDEBAR ITEMS
    ========================================================= */
@@ -541,7 +549,7 @@ TRADING-CHART
 }
 
 /*====================================================
-DASHBOARD-PARGE
+DASHBOARD-PAGE
 ======================================================*/
 .dashboard-page {
   padding: 28px;
@@ -746,3 +754,104 @@ CARD TOP PAIR
 
   color: var(--text-primary);
 }  
+
+/*==================================================
+  PAGE HEADER
+  ================================================*/
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 24px;
+}
+
+.page-title {
+  margin: 0;
+
+  font-size: 42px;
+  font-weight: 700;
+
+  color: var(--text-primary);
+}
+
+.page-subtitle {
+  margin-top: 8px;
+
+  color: var(--text-secondary);
+
+  font-size: 16px;
+}
+
+/* ========================================
+   TABLE PLACEHOLDER
+======================================== */
+
+.table-placeholder {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 320px;
+
+  color: var(--text-secondary);
+
+  text-align: center;
+}
+
+.placeholder-title {
+  margin-top: 20px;
+
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.placeholder-subtitle {
+  margin-top: 8px;
+
+  font-size: 14px;
+}
+
+/* ======================
+   TABLE DARK THEME
+====================== */
+
+.q-table {
+  background: transparent !important;
+  color: var(--text-primary);
+  padding: 24px;
+}
+
+.q-table__container {
+  background: transparent !important;
+}
+
+.q-table thead tr {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.q-table th {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 14px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.q-table td {
+  color: var(--text-primary);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.q-table tbody tr {
+  background: transparent;
+
+  transition: all .2s ease;
+}
+
+.q-table tbody tr:hover {
+  background: rgba(59, 130, 246, 0.08);
+}
