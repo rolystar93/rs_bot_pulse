@@ -855,3 +855,97 @@ CARD TOP PAIR
 .q-table tbody tr:hover {
   background: rgba(59, 130, 246, 0.08);
 }
+
+/* ======================
+   CARD SECTION ACTIONS
+====================== */
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px;
+}
+
+/* ======================
+   dark select menu
+====================== */
+.dark-select-menu {
+  background: #0b1220 !important;
+  color: #fff !important;
+}
+
+.dark-select-menu .q-item {
+  color: #fff !important;
+}
+
+.dark-select-menu .q-item:hover {
+  background: rgba(59, 130, 246, 0.15) !important;
+}
+
+/* ======================
+   FIELD DARK THEME
+====================== */
+.trading-input .q-field__control {
+  background: linear-gradient(
+    135deg,
+    rgba(15, 23, 42, 0.95),
+    rgba(17, 34, 64, 0.95)
+  ) !important;
+
+  border: 1px solid rgba(255,255,255,.12) !important;
+  border-radius: 14px;
+
+  transition: all .25s ease;
+}
+
+.trading-input .q-field__control:hover {
+  border-color: rgba(59, 130, 246, 0.35);
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.15);
+}
+
+.trading-input.q-field--focused .q-field__control {
+  border-color: #3b82f6;
+  box-shadow:
+    0 0 0 1px #3b82f6,
+    0 0 18px rgba(59,130,246,.25);
+}
+
+.trading-input .q-field__label {
+  color: rgba(255,255,255,.7);
+}
+
+.trading-input .q-field__native,
+.trading-input input,
+.trading-input textarea {
+  color: white !important;
+  font-weight: 500;
+}
+
+.flag-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.15);
+  object-fit: cover;
+}
+
+.flags-container {
+  display: flex;
+  align-items: center;
+}
+
+.flags-container .overlap {
+  margin-left: -8px;
+}
+
+.dark-select-menu {
+  background: #0f172a;
+  color: white;
+}
+
+.dark-select-menu .q-item {
+  color: white;
+}
+
+.dark-select-menu .q-item:hover {
+  background: rgba(59,130,246,.12);
+}
