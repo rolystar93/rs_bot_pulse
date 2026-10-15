@@ -1,76 +1,30 @@
 <template>
-  <q-layout
-    view="hHh lpR fFf"
-    class="dashboard-layout"
-  >
-
-    <!-- HEADER -->
-    <q-header
-      elevated
-      class="dashboard-header"
-    >
-      <q-toolbar class="q-px-lg q-py-sm">
-
-        <!-- MENU BUTTON -->
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          @click="toggleLeftDrawer"
-        />
-
-        <!-- TITLE -->
-        <q-toolbar-title class="text-weight-bold">
-          RS Bot Pulse
-        </q-toolbar-title>
-
-        <!-- SEARCH -->
-        <div class="search-box row items-center q-mr-md">
-          <q-icon
-            name="search"
-            size="18px"
-            class="q-mr-sm"
-          />
-
-          <span>Search...</span>
+  <q-layout view="lHh Lpr lFf" class="app-shell">
+    <q-drawer model-value behavior="desktop" :width="260" class="app-sidebar">
+      <div class="app-sidebar__layout">
+        <div class="app-sidebar__brand">
+          <div class="app-sidebar__logo"><q-icon name="bolt" size="24px" /></div>
+          <span>{{ APP_NAME }}</span>
         </div>
 
-        <!-- SETTINGS -->
-        <q-btn
-          flat
-          round
-          icon="notifications"
-          class="q-mr-sm"
-        />
+        <nav>
+          <NavLink v-for="item in NAV_ITEMS" :key="item.to" :item="item" />
+        </nav>
 
-        <q-btn
-          flat
-          round
-          icon="settings"
-        />
+        <nav class="app-sidebar__footer">
+          <NavLink v-for="item in FOOTER_NAV_ITEMS" :key="item.to" :item="item" />
+        </nav>
+      </div>
+    </q-drawer>
 
-      </q-toolbar>
-    </q-header>
-
-    <!-- DRAWER -->
-    <LeftDrawer v-model="leftDrawerOpen" />
-
-    <!-- PAGE -->
     <q-page-container>
       <router-view />
     </q-page-container>
-
   </q-layout>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import LeftDrawer from 'src/components/LeftDrawer.vue'
-
-const leftDrawerOpen = ref(false)
-
-function toggleLeftDrawer () {
-  leftDrawerOpen.value = !leftDrawerOpen.value
-}
+import NavLink from 'components/layout/NavLink.vue';
+import { APP_NAME } from 'src/constants/app';
+import { FOOTER_NAV_ITEMS, NAV_ITEMS } from 'src/constants/navigation';
 </script>

@@ -1,43 +1,36 @@
-# RS PULSE (rs-bot-pulse)
+# RS Bot Pulse
 
-Dashboard para operaciones de trading usando RS ForexBot
+App de escritorio (Quasar + Vite + Electron) para registrar y analizar operaciones de trading. Sin servidor: todo se guarda localmente mediante stores de Pinia persistidos en `localStorage`.
 
-## Install the dependencies
+## Scripts
 
 ```bash
-yarn
-# or
 npm install
-```
-
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
-
-```bash
-quasar dev
-```
-
-### Lint the files
-
-```bash
-yarn lint
-# or
+npm run dev            # navegador
+npm run dev:desktop    # Electron
+npm run build:desktop  # empaquetado de escritorio (dist/electron)
 npm run lint
 ```
 
-### Format the files
+> Si el binario de Electron no se descarga tras `npm install` (scripts bloqueados), ejecuta `node node_modules/electron/install.js`.
 
-```bash
-yarn format
-# or
-npm run format
-```
+## Funcionalidades
 
-### Build the app for production
+- Operaciones con captura de pantalla opcional (archivo, arrastrar o pegar con Ctrl+V); clic en una fila para ver el detalle y ampliar la imagen.
+- Pares predeterminados más pares personalizados (desde la página *Pares* o el formulario de operación).
+- *Configuración*: copia de seguridad (JSON), importación y zona roja que borra operaciones, brokers, tipos y capturas conservando todos los pares.
+- Metadatos en localStorage; capturas en IndexedDB.
 
-```bash
-quasar build
-```
+## Estructura
 
-### Customize the configuration
+| Carpeta | Contenido |
+| --- | --- |
+| `src/css` | Sistema de estilos centralizado: `abstracts` (tokens + mixins neumórficos), `base`, `components`, `layout` |
+| `src/components/ui` | Componentes genéricos reutilizables (`AppCard`, `AppButton`, `AppInput`, `AppSelect`, `AppDialog`, `StatCard`, `PairLabel`...) |
+| `src/components/{catalog,trades,dashboard}` | Componentes de dominio |
+| `src/stores` | `trades`, `brokers`, `operation-types` (persistidos) y `pairs` (catálogo estático con banderas). `factories/catalog-store.ts` genera los catálogos de solo nombre |
+| `src/data/trading-pairs.ts` | Catálogo de pares (majors, cruces, exóticos) |
+| `src/utils` | Formato (importes/fecha) y estadísticas puras |
+| `src/constants` | Configuración de la app, navegación, tema de gráficos |
 
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
+Los importes se muestran sin símbolo de moneda (la app es agnóstica a la divisa). Para cambiar el formato numérico/fecha edita `src/constants/app.ts`.

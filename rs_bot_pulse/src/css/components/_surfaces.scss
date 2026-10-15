@@ -1,0 +1,439 @@
+@use '../abstracts/mixins' as *;
+
+// ---------- Card ----------
+.app-card {
+  @include neu-raised(8px);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  height: 100%;
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+  }
+
+  &__title {
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+  &__subtitle {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+  }
+
+  &--flush {
+    padding: 0;
+    overflow: hidden;
+  }
+}
+
+// ---------- Stat card ----------
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+
+  &__icon {
+    @include flex-center;
+    @include neu-inset(3px);
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-md);
+    font-size: 26px;
+    color: var(--accent);
+    flex-shrink: 0;
+
+    &--positive {
+      color: var(--positive);
+    }
+
+    &--negative {
+      color: var(--negative);
+    }
+  }
+
+  &__label {
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+
+  &__value {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  &__hint {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+}
+
+// ---------- Page header ----------
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+
+  &__title {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  &__subtitle {
+    color: var(--text-secondary);
+    margin: 4px 0 0;
+  }
+}
+
+// ---------- Empty state ----------
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-xs);
+  padding: var(--space-lg) var(--space-md);
+  color: var(--text-muted);
+
+  &__title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+}
+
+// ---------- Badge ----------
+.app-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--accent-soft);
+  color: var(--accent);
+
+  &--positive {
+    background: var(--positive-soft);
+    color: var(--positive);
+  }
+
+  &--negative {
+    background: var(--negative-soft);
+    color: var(--negative);
+  }
+}
+
+// ---------- Pair label (banderas + símbolo) ----------
+.pair-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+
+  &__flags {
+    display: inline-flex;
+
+    .fi {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background-size: cover;
+      box-shadow: 0 0 0 2px var(--surface);
+
+      & + .fi {
+        margin-left: -10px;
+      }
+    }
+  }
+}
+
+// ---------- Ranking / progress rows ----------
+.rank-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  padding: var(--space-sm) 0;
+
+  & + & {
+    border-top: 1px solid var(--shadow-light);
+  }
+
+  &__meta {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+}
+
+.neu-progress {
+  @include neu-inset(2px);
+  height: 12px;
+  border-radius: 999px;
+  overflow: hidden;
+
+  &__bar {
+    height: 100%;
+    border-radius: 999px;
+    background: var(--positive);
+    transition: width var(--transition);
+
+    &--negative {
+      background: var(--negative);
+    }
+  }
+}
+
+// ---------- Breakdown table (estadísticas por grupo) ----------
+.breakdown {
+  &__row {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) repeat(3, minmax(48px, 1fr)) minmax(90px, 1.4fr);
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) 0;
+
+    & + & {
+      border-top: 1px solid var(--shadow-light);
+    }
+
+    &--head {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+  }
+
+  &__name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__bar {
+    display: block;
+    height: 6px;
+    margin-top: 4px;
+  }
+}
+
+// ---------- Catalog manager ----------
+.catalog-item {
+  @include neu-inset(3px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+
+  & + & {
+    margin-top: var(--space-sm);
+  }
+}
+
+// ---------- Field label ----------
+.field-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin-bottom: var(--space-xs);
+}
+
+// ---------- Detail grid ----------
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.detail-item {
+  &__label {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+  }
+
+  &__value {
+    font-weight: 600;
+  }
+}
+
+// ---------- Image upload / thumbnail ----------
+.image-upload {
+  @include neu-inset(3px);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: 130px;
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  text-align: center;
+  cursor: pointer;
+  outline: 2px dashed transparent;
+  transition: outline-color var(--transition), color var(--transition);
+
+  &:hover,
+  &:focus-visible,
+  &--over {
+    color: var(--accent);
+    outline-color: var(--accent);
+  }
+
+  &--filled {
+    padding: var(--space-xs);
+    cursor: default;
+    outline: none;
+  }
+
+  &__preview {
+    width: 100%;
+    max-height: 240px;
+    object-fit: contain;
+    border-radius: var(--radius-sm);
+  }
+
+  &__actions {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    display: flex;
+    gap: var(--space-xs);
+  }
+}
+
+.screenshot-thumb {
+  @include neu-inset(3px);
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: var(--space-xs);
+  border: 0;
+  border-radius: var(--radius-md);
+  cursor: zoom-in;
+
+  img {
+    display: block;
+    width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+    border-radius: var(--radius-sm);
+  }
+
+  &__hint {
+    position: absolute;
+    right: 18px;
+    bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    color: var(--text-primary);
+    background: rgba(8, 11, 20, 0.7);
+  }
+}
+
+// ---------- Image viewer (maximizado) ----------
+.image-viewer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: rgba(8, 11, 20, 0.96);
+
+  &__toolbar {
+    position: absolute;
+    top: var(--space-md);
+    right: var(--space-md);
+    z-index: 1;
+    display: flex;
+    gap: var(--space-sm);
+  }
+
+  &__stage {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: var(--space-md);
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      cursor: zoom-in;
+
+      &.is-zoomed {
+        max-width: none;
+        max-height: none;
+        cursor: zoom-out;
+      }
+    }
+
+    &--zoomed {
+      display: block;
+      overflow: auto;
+    }
+  }
+}
+
+// ---------- Danger zone ----------
+.app-card--danger {
+  outline: 1px solid var(--negative);
+
+  .app-card__title {
+    color: var(--negative);
+  }
+}
+
+.settings-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+
+  & + & {
+    margin-top: var(--space-md);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--shadow-light);
+  }
+
+  &__text {
+    flex: 1;
+    min-width: 240px;
+  }
+
+  &__title {
+    font-weight: 600;
+  }
+
+  &__description {
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+}
+
+.table-row-clickable tbody tr {
+  cursor: pointer;
+}

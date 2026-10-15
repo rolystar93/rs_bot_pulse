@@ -1,0 +1,36 @@
+// Mixins neumórficos reutilizables.
+
+@mixin neu-raised($offset: 7px) {
+  background: var(--surface);
+  box-shadow:
+    $offset $offset ($offset * 2.4) var(--shadow-dark),
+    (-$offset) (-$offset) ($offset * 2.4) var(--shadow-light);
+}
+
+@mixin neu-inset($offset: 4px) {
+  background: var(--bg-deep);
+  box-shadow:
+    inset $offset $offset ($offset * 2.5) var(--shadow-dark),
+    inset (-$offset) (-$offset) ($offset * 2.5) var(--shadow-light);
+}
+
+@mixin neu-interactive {
+  transition:
+    box-shadow var(--transition),
+    color var(--transition);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--text-primary);
+  }
+
+  &:active {
+    @include neu-inset(2px);
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

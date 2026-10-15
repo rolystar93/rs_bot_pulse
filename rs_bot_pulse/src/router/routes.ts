@@ -4,11 +4,12 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/IndexPage.vue') },
-    {
-      path: 'trading-pairs',
-      component: () => import('pages/TradingPairsPage.vue')
-    },
+    children: [
+      { path: '', name: 'dashboard', component: () => import('pages/DashboardPage.vue') },
+      { path: 'trades', name: 'trades', component: () => import('pages/TradesPage.vue') },
+      { path: 'pairs', name: 'pairs', component: () => import('pages/PairsPage.vue') },
+      { path: 'settings', name: 'settings', component: () => import('pages/SettingsPage.vue') },
+      { path: 'catalogs', name: 'catalogs', component: () => import('pages/CatalogsPage.vue') },
     ],
   },
 

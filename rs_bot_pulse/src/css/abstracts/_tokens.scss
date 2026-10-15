@@ -1,0 +1,38 @@
+// Design tokens: única fuente de verdad para colores, sombras, radios y espaciados.
+:root {
+  // Superficies (neumorfismo: todo comparte el mismo tono base)
+  --bg: #1d2230;
+  --bg-deep: #171b27;
+  --surface: #1d2230;
+
+  // Sombras neumórficas
+  --shadow-dark: rgba(8, 11, 20, 0.75);
+  --shadow-light: rgba(70, 82, 112, 0.28);
+
+  // Texto
+  --text-primary: #e8ecf5;
+  --text-secondary: #9aa4bd;
+  --text-muted: #6b7694;
+
+  // Acentos
+  --accent: #5b8cff;
+  --accent-soft: rgba(91, 140, 255, 0.16);
+  --positive: #2fd48a;
+  --positive-soft: rgba(47, 212, 138, 0.14);
+  --negative: #ff5d73;
+  --negative-soft: rgba(255, 93, 115, 0.14);
+  --warning: #f5b84b;
+
+  // Radios
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 12px;
+
+  // Espaciados
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 20px;
+  --space-lg: 28px;
+
+  --transition: 0.25s ease;
+}

@@ -1,0 +1,145 @@
+@use '../abstracts/mixins' as *;
+
+// Sobrescrituras de Quasar para unificar el look neumórfico.
+
+// ---------- Buttons ----------
+.q-btn.app-btn {
+  @include neu-raised(4px);
+  @include neu-interactive;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+
+  &--primary {
+    color: var(--accent);
+  }
+
+  &--danger {
+    color: var(--negative);
+  }
+
+  &--flat {
+    box-shadow: none;
+    background: transparent;
+  }
+
+  &.q-btn--round {
+    border-radius: 50%;
+  }
+}
+
+// ---------- Fields ----------
+.q-field.app-field {
+  .q-field__control {
+    @include neu-inset(3px);
+    border-radius: var(--radius-sm);
+    padding: 0 14px;
+
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
+
+  .q-field__label {
+    color: var(--text-muted);
+  }
+
+  .q-field__native,
+  .q-field__input {
+    color: var(--text-primary);
+  }
+
+  &.q-field--focused .q-field__control {
+    outline: 1px solid var(--accent);
+  }
+
+  &.q-field--error .q-field__control {
+    outline: 1px solid var(--negative);
+  }
+}
+
+.app-menu {
+  @include neu-raised(6px);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--text-primary);
+}
+
+// ---------- Dialog ----------
+.app-dialog {
+  @include neu-raised(10px);
+  border-radius: var(--radius-lg);
+  width: 520px;
+  max-width: 92vw;
+  max-height: 92vh;
+  overflow-y: auto;
+  padding: var(--space-md);
+
+  &--wide {
+    width: 760px;
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: var(--space-md);
+  }
+
+  &__message {
+    margin: 0 0 var(--space-md);
+    line-height: 1.5;
+    color: var(--text-secondary);
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+  }
+}
+
+// ---------- Table ----------
+.q-table__container.app-table {
+  background: transparent;
+  color: var(--text-primary);
+
+  .q-table__top,
+  .q-table__bottom {
+    border-color: transparent;
+  }
+
+  thead th {
+    color: var(--text-muted);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  th,
+  td {
+    border-color: var(--shadow-light);
+  }
+
+  tbody tr:hover td {
+    background: var(--accent-soft);
+  }
+
+  .q-table__bottom {
+    color: var(--text-secondary);
+  }
+}
+
+// ---------- Notify ----------
+.q-notification {
+  @include neu-raised(5px);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+}
