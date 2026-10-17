@@ -1,11 +1,11 @@
-export interface CatalogItem {
+﻿export interface CatalogItem {
   id: string;
   name: string;
   /** Solo lo usan los catálogos que lo admiten (p. ej. estrategias) */
   description?: string;
 }
 
-export type PairCategory = 'major' | 'cross' | 'exotic' | 'custom';
+export type PairCategory = 'major' | 'cross' | 'exotic' | 'crypto' | 'metal' | 'custom';
 
 export interface TradingPair {
   /** Identificador estable, p. ej. "EURUSD" */

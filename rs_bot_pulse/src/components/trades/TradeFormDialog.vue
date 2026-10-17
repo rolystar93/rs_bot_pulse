@@ -3,8 +3,12 @@
     @submit="submit">
     <div class="row q-col-gutter-md">
       <div class="col-12 col-sm-6">
-        <AppSelect v-model="form.pairId" label="Par" :options="pairsStore.options" :error="showError('pairId')"
-          error-message="Selecciona un par">
+        <AppSelect v-model="form.pairId" label="Activo" :options="filteredPairOptions" :error="showError('pairId')"
+          error-message="Selecciona un activo" use-input hide-selected fill-input input-debounce="0"
+          @filter="onPairFilter" @popup-hide="pairFilter = ''">
+          <template #no-option>
+            <q-item><q-item-section class="text-muted">Sin resultados</q-item-section></q-item>
+          </template>
           <template #selected-item="{ opt }">
             <PairLabel :pair="opt.pair" />
           </template>
@@ -18,7 +22,7 @@
           <template #after-options>
             <q-item clickable @click="pairDialogOpen = true">
               <q-item-section avatar><q-icon name="add_circle_outline" color="primary" /></q-item-section>
-              <q-item-section class="text-primary">Agregar par nuevo...</q-item-section>
+              <q-item-section class="text-primary">Agregar activo nuevo...</q-item-section>
             </q-item>
           </template>
         </AppSelect>
@@ -103,6 +107,20 @@ const brokersStore = useBrokersStore();
 const operationTypesStore = useOperationTypesStore();
 const strategiesStore = useStrategiesStore();
 
+const pairFilter = ref('');
+const filteredPairOptions = computed(() => {
+  const term = pairFilter.value.trim().toLowerCase().replace('/', '');
+  if (!term) return pairsStore.options;
+  return pairsStore.options.filter(({ pair }) =>
+    `${pair.base}${pair.quote} ${pair.symbol}`.toLowerCase().includes(term),
+  );
+});
+
+function onPairFilter(value: string, update: (fn: () => void) => void): void {
+  update(() => {
+    pairFilter.value = value;
+  });
+}
 interface FormState {
   pairId: string | null;
   timeframe: string;

@@ -1,7 +1,15 @@
 import type { PairCategory, TradingPair } from 'src/types';
 import { CURRENCY_FLAGS } from './currency-flags';
 
-const PAIR_DEFINITIONS: Record<Exclude<PairCategory, 'custom'>, string[]> = {
+const SINGLE_ASSETS: Record<'crypto' | 'metal', string[]> = {
+  crypto: [
+    'BTC', 'ETH', 'BNB', 'XRP', 'SOL', 'ADA', 'DOGE', 'DOT', 'LTC', 'LINK',
+    'AVAX', 'MATIC', 'TRX', 'BCH', 'XLM', 'ATOM', 'UNI', 'XMR', 'ETC', 'SHIB',
+  ],
+  metal: ['XAU', 'XAG', 'XPT', 'XPD', 'XCU'],
+};
+
+const PAIR_DEFINITIONS: Record<'major' | 'cross' | 'exotic', string[]> = {
   major: ['EURUSD', 'GBPUSD', 'USDJPY', 'USDCHF', 'AUDUSD', 'USDCAD', 'NZDUSD'],
   cross: [
     'EURGBP', 'EURJPY', 'EURCHF', 'EURAUD', 'EURCAD', 'EURNZD',
@@ -28,6 +36,15 @@ function buildPair(id: string, category: PairCategory): TradingPair {
   };
 }
 
-export const TRADING_PAIRS: TradingPair[] = (
-  Object.entries(PAIR_DEFINITIONS) as [PairCategory, string[]][]
-).flatMap(([category, ids]) => ids.map((id) => buildPair(id, category)));
+function buildSingleAsset(code: string, category: PairCategory): TradingPair {
+  return { id: code, symbol: code, base: code, quote: '', baseFlag: '', quoteFlag: '', category };
+}
+
+export const TRADING_PAIRS: TradingPair[] = [
+  ...(Object.entries(PAIR_DEFINITIONS) as [PairCategory, string[]][]).flatMap(([category, ids]) =>
+    ids.map((id) => buildPair(id, category)),
+  ),
+  ...(Object.entries(SINGLE_ASSETS) as [PairCategory, string[]][]).flatMap(([category, codes]) =>
+    codes.map((code) => buildSingleAsset(code, category)),
+  ),
+];

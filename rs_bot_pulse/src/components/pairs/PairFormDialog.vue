@@ -1,7 +1,7 @@
-<template>
+﻿<template>
   <AppDialog
     v-model="model"
-    :title="pair ? 'Editar par' : 'Nuevo par'"
+    :title="pair ? 'Editar activo' : 'Nuevo activo'"
     icon="currency_exchange"
     :submit-label="pair ? 'Guardar cambios' : 'Guardar'"
     @submit="submit"
@@ -21,8 +21,8 @@
       <div class="col-6">
         <AppInput
           v-model="form.quote"
-          label="Divisa cotizada"
-          hint="Ej. USD"
+          label="Divisa cotizada (opcional)"
+          hint="Vacío para cripto, metales u otros activos"
           maxlength="6"
           :error="showError('quote')"
           error-message="2 a 6 letras o números"
@@ -56,11 +56,11 @@
       <div class="col-12">
         <div class="field-label">Vista previa</div>
         <PairLabel v-if="preview" :pair="preview" />
-        <span v-else class="text-muted">Completa las divisas para ver el par</span>
+        <span v-else class="text-muted">Completa la divisa base para ver el activo</span>
       </div>
 
       <div v-if="duplicate" class="col-12 text-negative text-caption">
-        El par {{ preview?.symbol }} ya existe.
+        El activo {{ preview?.symbol }} ya existe.
       </div>
     </div>
   </AppDialog>
@@ -123,7 +123,7 @@ function onCodeInput(side: 'base' | 'quote'): void {
 
 const errors = computed(() => ({
   base: !CODE_PATTERN.test(form.base),
-  quote: !CODE_PATTERN.test(form.quote),
+  quote: !!form.quote && !CODE_PATTERN.test(form.quote),
   baseFlag: !!form.baseFlag && !FLAG_PATTERN.test(form.baseFlag),
   quoteFlag: !!form.quoteFlag && !FLAG_PATTERN.test(form.quoteFlag),
 }));
@@ -135,11 +135,11 @@ const preview = computed<TradingPair | null>(() => {
 
   return {
     id: `${form.base}${form.quote}`,
-    symbol: `${form.base}/${form.quote}`,
+    symbol: form.quote ? `${form.base}/${form.quote}` : form.base,
     base: form.base,
     quote: form.quote,
     baseFlag: errors.value.baseFlag ? '' : form.baseFlag,
-    quoteFlag: errors.value.quoteFlag ? '' : form.quoteFlag,
+    quoteFlag: form.quote && !errors.value.quoteFlag ? form.quoteFlag : '',
     category: 'custom',
   };
 });
@@ -151,7 +151,7 @@ const duplicate = computed(
 
 function submit(): void {
   submitted.value = true;
-  if (Object.values(errors.value).some(Boolean) || !preview.value || form.base === form.quote) return;
+  if (Object.values(errors.value).some(Boolean) || !preview.value || (!!form.quote && form.base === form.quote)) return;
 
   const next = preview.value;
   const previous = props.pair;
@@ -159,10 +159,10 @@ function submit(): void {
   if (previous) {
     if (!pairsStore.updateCustom(previous.id, next)) return;
     if (next.id !== previous.id) tradesStore.reassignPair(previous.id, next.id);
-    notify(`Par ${next.symbol} actualizado`);
+    notify(`Activo ${next.symbol} actualizado`);
   } else {
     if (!pairsStore.addCustom(next)) return;
-    notify(`Par ${next.symbol} agregado`);
+    notify(`Activo ${next.symbol} agregado`);
   }
 
   emit('saved', next.id);
